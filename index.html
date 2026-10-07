@@ -6,19 +6,22 @@
 <title>Faces Worth Keeping — Bộ sưu tập gương mặt</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Fraunces (tiêu đề) + Be Vietnam Pro (nội dung): cả hai hỗ trợ đầy đủ tiếng Việt -->
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- Playfair Display (tiêu đề) + Be Vietnam Pro (nội dung): cả hai hỗ trợ đầy đủ tiếng Việt -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
   :root{
-    --wall:#eceaf3;        /* tường phòng tranh, xám lavender nhạt */
-    --wall-2:#e2dfee;
-    --ink:#231536;         /* mực tím than */
-    --ink-soft:#5d516f;
-    --rose:#e2517b;        /* hồng đậm nhấn */
-    --lilac:#8f7ad8;
-    --paper:#ffffff;
-    --serif:'Fraunces','Playfair Display',Georgia,'Times New Roman',serif;
+    --wall:#0b0812;        /* nền tím đen đậm */
+    --wall-2:#171126;
+    --deep:#07050d;
+    --deep-2:#120d20;
+    --ink:#f5f0ff;         /* chữ chính (sáng) */
+    --ink-soft:#b6aacf;    /* chữ phụ */
+    --rose:#b99be8;        /* màu nhấn tím lilac */
+    --lilac:#c2a8f0;
+    --paper:#ece5f8;
+    --grad:linear-gradient(180deg,#efe6fb 0%,#c3a6ee 50%,#9a6fd3 100%);
+    --serif:'Playfair Display',Georgia,'Times New Roman',serif;
     --sans:'Be Vietnam Pro','Segoe UI',Roboto,Arial,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -31,12 +34,12 @@
   body.locked{overflow:hidden}
   img{display:block;max-width:100%}
   a{color:inherit;text-decoration:none}
-  ::selection{background:var(--rose);color:#fff}
+  ::selection{background:#7c4dc4;color:#fff}
 
   /* ===== MÀN MỞ ĐẦU: tấm rèm kéo ra ===== */
   #curtain{position:fixed;inset:0;z-index:100;display:flex;pointer-events:auto}
   #curtain .half{
-    flex:1;background:var(--ink);
+    flex:1;background:var(--deep);
     transition:transform 1.4s cubic-bezier(.76,0,.24,1);
   }
   #curtain.open .half:first-child{transform:translateX(-101%)}
@@ -50,33 +53,33 @@
   #curtain.open .center{opacity:0;pointer-events:none}
   #curtain .center small{font-size:.9rem;color:#c9bfe6;letter-spacing:.04em}
   #curtain .center h2{
-    font-family:var(--serif);font-weight:300;font-style:italic;
-    font-size:clamp(2.6rem,8vw,5.5rem);line-height:1.05;
+    font-family:var(--serif);font-weight:600;color:#f8f4ff;
+    font-size:clamp(2.6rem,8vw,5.5rem);line-height:1.05;letter-spacing:-.02em;
   }
   #openBtn{
     margin-top:.8rem;font-family:var(--sans);font-size:.95rem;font-weight:500;
-    color:#fff;background:var(--rose);border:0;border-radius:999px;
+    color:#fff;background:linear-gradient(135deg,#a67fe0,#7c4dc4);border:0;border-radius:999px;
     padding:1rem 2.6rem;cursor:pointer;
-    box-shadow:0 10px 40px rgba(226,81,123,.45);
+    box-shadow:0 10px 40px rgba(124,77,196,.5);
     transition:transform .25s,box-shadow .25s;
   }
-  #openBtn:hover,#openBtn:focus-visible{transform:translateY(-3px);outline:none;box-shadow:0 16px 50px rgba(226,81,123,.6)}
+  #openBtn:hover,#openBtn:focus-visible{transform:translateY(-3px);outline:none;box-shadow:0 16px 50px rgba(124,77,196,.75)}
 
   /* ===== NÚT NHẠC ===== */
   #musicBtn{
     position:fixed;right:clamp(.8rem,3vw,2rem);bottom:clamp(.8rem,3vw,2rem);z-index:60;
     display:flex;align-items:center;gap:.7rem;cursor:pointer;
-    background:var(--ink);color:#f6f1ff;border:0;border-radius:999px;
+    background:#1c1430;color:#f6f1ff;border:1px solid rgba(185,155,232,.35);border-radius:999px;
     padding:.5rem 1.2rem .5rem .5rem;font-family:var(--sans);font-size:.82rem;font-weight:400;
-    box-shadow:0 12px 35px rgba(35,21,54,.35);
+    box-shadow:0 12px 35px rgba(0,0,0,.55);
     transition:transform .25s;
   }
   #musicBtn:hover,#musicBtn:focus-visible{transform:translateY(-3px);outline:none}
   .disc{
     width:38px;height:38px;border-radius:50%;
     background:
-      radial-gradient(circle,var(--ink) 0 14%,var(--rose) 15% 30%,var(--ink) 31% 100%),
-      var(--ink);
+      radial-gradient(circle,var(--deep) 0 14%,#9a6fd3 15% 30%,var(--deep) 31% 100%),
+      var(--deep);
     position:relative;
   }
   .disc::after{content:"";position:absolute;inset:0;border-radius:50%;
@@ -101,15 +104,20 @@
     display:flex;flex-direction:column;align-items:center;justify-content:center;
     padding:6.5rem 1.2rem 3rem;text-align:center;overflow:hidden;
     background:
-      radial-gradient(900px 420px at 50% 100%,rgba(143,122,216,.28),transparent 70%),
+      radial-gradient(900px 420px at 50% 100%,rgba(130,85,215,.32),transparent 70%),
       var(--wall);
   }
   .hero h1{
-    font-family:var(--serif);font-weight:300;
-    font-size:clamp(3.2rem,10.5vw,9rem);line-height:.92;letter-spacing:-.025em;
-    margin-bottom:1rem;
+    font-family:var(--serif);font-weight:600;color:#f8f4ff;
+    font-size:clamp(3.2rem,10.5vw,9rem);line-height:.98;letter-spacing:-.02em;
+    margin-bottom:1.2rem;
   }
-  .hero h1 em{font-style:italic;font-weight:400;color:var(--rose)}
+  /* chữ nghiêng gradient tím lilac, dùng chung cho các tiêu đề lớn */
+  .hero h1 em,#curtain .center h2 em,.g-head h2 em,.msg h2 em{
+    font-style:italic;font-weight:600;display:inline-block;padding:0 .08em .06em 0;
+    background:var(--grad);-webkit-background-clip:text;background-clip:text;
+    color:transparent;-webkit-text-fill-color:transparent;
+  }
   .hero .sub{max-width:34rem;color:var(--ink-soft);font-size:1rem;margin-bottom:2.6rem}
 
   /* quạt ảnh */
@@ -130,7 +138,7 @@
   /* khung ảnh dạng in ảnh có viền trắng */
   .print{
     background:var(--paper);padding:clamp(5px,1vw,10px);
-    box-shadow:0 2px 3px rgba(35,21,54,.12),0 22px 50px rgba(35,21,54,.22);
+    box-shadow:0 2px 3px rgba(0,0,0,.4),0 22px 50px rgba(0,0,0,.55);
   }
   .print .img{aspect-ratio:3/4;overflow:hidden;background:var(--wall-2)}
   .print img{width:100%;height:100%;object-fit:cover;object-position:top center}
@@ -146,9 +154,8 @@
 
   /* ===== GALLERY ===== */
   #gallery{max-width:1300px;margin:0 auto;padding:4rem clamp(1.2rem,5vw,4rem) 6rem}
-  .g-head{display:flex;justify-content:space-between;align-items:flex-end;gap:1.5rem;flex-wrap:wrap;margin-bottom:3.5rem;border-bottom:1px solid rgba(35,21,54,.2);padding-bottom:1.4rem}
-  .g-head h2{font-family:var(--serif);font-weight:300;font-size:clamp(2.6rem,6vw,4.8rem);line-height:1;letter-spacing:-.02em}
-  .g-head h2 em{font-style:italic;color:var(--rose)}
+  .g-head{display:flex;justify-content:space-between;align-items:flex-end;gap:1.5rem;flex-wrap:wrap;margin-bottom:3.5rem;border-bottom:1px solid rgba(185,155,232,.25);padding-bottom:1.4rem}
+  .g-head h2{font-family:var(--serif);font-weight:600;color:#f8f4ff;font-size:clamp(2.6rem,6vw,4.8rem);line-height:1;letter-spacing:-.02em}
   .g-head p{color:var(--ink-soft);font-size:.9rem}
 
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:3.4rem 2.4rem}
@@ -157,7 +164,7 @@
   .card:nth-child(3n+1) .print{transform:rotate(-1.4deg)}
   .card:nth-child(3n+2) .print{transform:rotate(1deg)}
   .card:nth-child(3n) .print{transform:rotate(-.5deg)}
-  .card:hover .print{transform:rotate(0) translateY(-8px);box-shadow:0 2px 3px rgba(35,21,54,.12),0 34px 60px rgba(35,21,54,.3)}
+  .card:hover .print{transform:rotate(0) translateY(-8px);box-shadow:0 2px 3px rgba(0,0,0,.4),0 34px 60px rgba(120,70,220,.45)}
   .card .meta{padding:0 .3rem}
   .card .no{font-family:var(--serif);font-style:italic;color:var(--rose);font-size:1rem}
   .card h3{font-family:var(--serif);font-weight:500;font-size:1.7rem;line-height:1.1;letter-spacing:-.01em;margin:.15rem 0 .3rem}
@@ -165,14 +172,13 @@
   .card .desc{font-size:.9rem;color:var(--ink-soft);line-height:1.65}
 
   /* ===== LỜI NHẮN ===== */
-  .msg{background:var(--ink);color:#f3ecff;padding:7rem 1.5rem;text-align:center}
-  .msg h2{font-family:var(--serif);font-weight:300;font-size:clamp(2.6rem,7vw,5.6rem);line-height:1;letter-spacing:-.02em;margin-bottom:2rem}
-  .msg h2 em{font-style:italic;color:#ff8fb0}
+  .msg{background:var(--deep-2);color:#f3ecff;padding:7rem 1.5rem;text-align:center}
+  .msg h2{font-family:var(--serif);font-weight:600;color:#f8f4ff;font-size:clamp(2.6rem,7vw,5.6rem);line-height:1;letter-spacing:-.02em;margin-bottom:2rem}
   .msg p{max-width:32rem;margin:0 auto 1rem;color:#cfc4ea}
-  .msg .sign{font-family:var(--serif);font-style:italic;font-size:1.6rem;color:#ff8fb0;margin-top:2rem}
+  .msg .sign{font-family:var(--serif);font-style:italic;font-size:1.6rem;color:#c2a8f0;margin-top:2rem}
   .msg a.up{display:inline-block;margin-top:2.4rem;font-size:.85rem;border:1px solid #f3ecff;border-radius:999px;padding:.8rem 1.8rem;transition:background .3s,color .3s}
-  .msg a.up:hover{background:#f3ecff;color:var(--ink)}
-  footer{background:var(--ink);color:#8d80a8;text-align:center;font-size:.8rem;padding:0 1rem 2.4rem}
+  .msg a.up:hover{background:#f3ecff;color:var(--deep)}
+  footer{background:var(--deep-2);color:#8d80a8;text-align:center;font-size:.8rem;padding:0 1rem 2.4rem}
 
   /* ===== LIGHTBOX ===== */
   #lightbox{
@@ -216,7 +222,7 @@
   <div class="half"></div><div class="half"></div>
   <div class="center">
     <small>Một chút bất ngờ dành cho bạn</small>
-    <h2>Faces worth<br>keeping</h2>
+    <h2>Faces worth<br><em>keeping.</em></h2>
     <button id="openBtn" type="button">Bấm để mở màn</button>
   </div>
 </div>
